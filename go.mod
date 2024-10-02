@@ -3,10 +3,12 @@ module github.com/GoogleCloudPlatform/gcs-metadata-server
 go 1.23.0
 
 require (
+	cloud.google.com/go/pubsub v1.39.0
 	cloud.google.com/go/storage v1.43.0
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/mattn/go-sqlite3 v1.14.23
+	google.golang.org/api v0.187.0
 )
 
 require (
@@ -37,7 +39,6 @@ require (
 	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
-	google.golang.org/api v0.187.0 // indirect
 	google.golang.org/genproto v0.0.0-20240624140628-dc46fd24d27d // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240617180043-68d350f18fd4 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240624140628-dc46fd24d27d // indirect

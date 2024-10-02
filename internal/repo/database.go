@@ -71,6 +71,16 @@ func (db *Database) Connect(ctx context.Context) error {
 	return nil
 }
 
+// PingTable checks if database schema has been created by pinging metadata table
+func (db *Database) PingTable() (bool, error) {
+	var tableExists bool
+	if err := db.QueryRow(`SELECT EXISTS(SELECT 1 FROM sqlite_master WHERE type="table" AND name="metadata");`).Scan(&tableExists); err != nil {
+		return false, err
+	}
+
+	return tableExists, nil
+}
+
 // Setup executes all PRAGMA configs to setup database behavior
 func (db *Database) Setup() error {
 	if _, err := db.Exec(pragma); err != nil {
