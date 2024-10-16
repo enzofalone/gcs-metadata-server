@@ -58,6 +58,28 @@ func TestHandleFinalize(t *testing.T) {
 			wantUpsertCalls: 1,
 		},
 		{
+			name: "Updates metadata",
+			inMetadata: &model.Metadata{
+				Bucket:       "mock-bucket-2",
+				Name:         "mock-object-2",
+				Size:         256,
+				StorageClass: "STANDARD",
+				Updated:      time.Now(),
+				Created:      time.Now(),
+			},
+			existingMetadata: &model.Metadata{
+				Bucket:       "mock-bucket-2",
+				Name:         "mock-object-2",
+				Size:         1024,
+				StorageClass: "STANDARD",
+				Updated:      time.Now().Add(-time.Hour),
+				Created:      time.Now(),
+			},
+			wantErr:         false,
+			wantUpdateCalls: 1,
+			wantUpsertCalls: 1,
+		},
+		{
 			name: "Skip if incoming metadata is older",
 			inMetadata: &model.Metadata{
 				Bucket:       "mock-bucket",
